@@ -5,11 +5,8 @@ review kitchen hygiene, get cooking help, build meal plans and see it all on a d
 
 - **Frontend:** React + Vite, plain CSS, `fetch`
 - **Backend:** Python FastAPI, one service + one router per feature
-- **AI:** Anthropic Claude (vision + language). No AI key means a clear error, never fake results.
+- **AI:** Gemini API (vision + language). No AI key means a clear error, never fake results.
 
-## Run it
-
-You need Python 3.10+ and Node 18+.
 
 ### 1. Backend
 
@@ -18,7 +15,7 @@ cd backend
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env             # then paste your ANTHROPIC_API_KEY into .env
+cp .env.example .env             
 uvicorn main:app --reload --port 8000
 ```
 
@@ -67,11 +64,40 @@ frontend/src/
 | 9 | Modular full-stack | React frontend, FastAPI backend, one module per capability |
 | 10 | Actionable insights | `services/insights.py`, `pages/Dashboard.jsx` |
 
-## Honest notes (good for your viva)
+## 🏗️ Architecture
 
-- **Voice:** uses the browser's speech recognition (Chrome / Edge) to turn speech into text. It is not a server-side audio model.
-- **Video:** 6 evenly spaced frames are sampled with OpenCV, so brief moments between frames can be missed.
-- **Hygiene score** is computed in Python from the AI's per-indicator verdicts; "not visible" indicators are left out, not guessed.
-- **Calorie target** uses the Mifflin-St Jeor formula in Python, with a safety floor. The AI only builds meals around it.
-- **Nutrition numbers are estimates.** The code cross-checks macros against calories and flags big mismatches.
-- No accounts and no database: history lives in your browser's localStorage and photos are never stored.
+FoodVerse follows a modular full-stack architecture:
+
+- **React frontend:** Provides feature-specific pages and reusable UI components.
+- **FastAPI backend:** Exposes API endpoints through dedicated routers.
+- **Service layer:** Separates business logic for recognition, nutrition, freshness, hygiene, cooking, meal planning, and insights.
+- **Centralized AI integration:** Routes AI requests through `services/llm.py`.
+- **Media processing:** Uses OpenCV to sample video frames for analysis.
+- **Local history:** Stores saved results in browser localStorage.
+
+## 🔍 Technical Notes & Limitations
+
+- **AI dependency:** AI-powered features require a valid Anthropic API key. Without one, the application reports a clear configuration error rather than fabricating AI results.
+- **Voice input:** Uses browser speech recognition, supported primarily in compatible browsers such as Chrome and Edge.
+- **Video analysis:** Samples six evenly spaced frames, so brief events between sampled frames may be missed.
+- **Hygiene scoring:** Computed in Python from AI-generated indicator verdicts. Indicators that cannot be assessed visually are excluded.
+- **Nutrition estimates:** Nutritional values are estimates, not laboratory measurements. The application cross-checks macronutrients against estimated calories and flags substantial discrepancies.
+- **Meal planning:** Uses the Mifflin–St Jeor equation to estimate calorie needs, with a safety floor.
+- **Food safety:** Visual freshness and hygiene assessments cannot guarantee that food is safe to consume.
+- **Storage and privacy:** No user accounts or database are configured. Saved history is stored in browser localStorage; uploaded photos are not intentionally persisted by the application.
+
+## 🔮 Future Improvements
+
+- Integrate verified nutritional databases.
+- Add user authentication and persistent meal history.
+- Improve food recognition and portion-size estimation.
+- Expand automated testing and API error handling.
+- Add richer analytics and meal-plan customization.
+
+## ⚠️ Disclaimer
+
+FoodVerse provides informational estimates and AI-generated suggestions. It is not a substitute for professional nutritional advice, food-safety testing, or medical guidance.
+
+---
+
+**Built with React, FastAPI, and Anthropic Claude.**
