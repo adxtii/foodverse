@@ -1,0 +1,5 @@
+.ring { display: grid; justify-items: center; gap: 6px; width: 140px; }
+.ring svg { width: 120px; height: 120px; }
+.ring-bg { fill: none; stroke: var(--line); stroke-width: 8; }
+.ring-fg { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1.2s var(--ease); }
+.ring-num { fill: var(--text); font: 600 30px var(--sans); }

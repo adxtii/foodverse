@@ -1,0 +1,5 @@
+.freshness-form { max-width: 640px; }
+.freshness-results { margin-top: 36px; }
+.freshness-head { gap: 16px; }
+.freshness-item { font-size: 1.5rem; letter-spacing: -0.02em; }
+.verdict { font-size: 0.9rem; padding: 6px 16px; }

@@ -1,0 +1,8 @@
+.nutrition-form { max-width: 640px; }
+.nutrition-results { margin-top: 36px; }
+.nutrition-top { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.nutrition-dish { font-size: 1.5rem; letter-spacing: -0.02em; }
+.nutrition-cal { margin-top: 10px; font-size: 1.1rem; }
+.nutrition-cal strong { font-size: 2.4rem; letter-spacing: -0.03em; }
+.macro-num { font-size: 2rem; letter-spacing: -0.03em; }
+.macro-num small { font-size: 1rem; color: var(--muted); margin-left: 2px; }

@@ -1,0 +1,4 @@
+.hygiene-form { max-width: 640px; }
+.hygiene-results { margin-top: 36px; }
+.hygiene-top { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.hygiene-summary { max-width: 520px; font-size: 1.05rem; }

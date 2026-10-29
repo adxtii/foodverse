@@ -1,0 +1,16 @@
+.cook-form { max-width: 640px; }
+.cook-results { margin-top: 36px; }
+.cook-head { gap: 12px; }
+.cook-title { font-size: 1.6rem; letter-spacing: -0.02em; margin-right: 8px; }
+.cook-answer { display: grid; gap: 8px; border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.cook-cols { display: grid; grid-template-columns: 1fr 1.6fr; gap: 16px; align-items: start; }
+.cook-ingredients { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cook-ingredients li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.cook-steps { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 18px; }
+.cook-steps li { position: relative; padding-left: 44px; color: #cfcdc2; counter-increment: step; animation: fadeUp 0.6s var(--ease) both; }
+.cook-steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px;
+  display: grid; place-items: center; border-radius: 50%;
+  background: var(--surface-2); color: var(--accent); font: 500 0.8rem var(--mono);
+}
+@media (max-width: 760px) { .cook-cols { grid-template-columns: 1fr; } }

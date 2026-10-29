@@ -1,0 +1,44 @@
+.hero { position: relative; padding: 170px 0 90px; overflow: hidden; }
+.hero-glow {
+  position: absolute; width: 640px; height: 640px; right: -180px; top: -120px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 26%, transparent), transparent 65%);
+  filter: blur(30px); animation: drift 14s ease-in-out infinite alternate; pointer-events: none;
+}
+@keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(-80px, 60px) scale(1.15); } }
+
+.hero-inner { position: relative; display: grid; gap: 26px; }
+.hero-tag, .hero-title, .hero-text, .hero-inner .row, .hero-stats { animation: fadeUp 0.9s var(--ease) both; }
+.hero-title { animation-delay: 0.08s; }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-text { max-width: 540px; font-size: 1.08rem; animation-delay: 0.16s; }
+.hero-inner .row { animation-delay: 0.24s; }
+
+.hero-stats { display: flex; gap: 48px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); animation-delay: 0.34s; }
+.hero-stats div { display: grid; }
+.hero-stats strong { font-size: 2rem; letter-spacing: -0.03em; }
+
+.section { padding: 70px 0; }
+.section-title { margin: 10px 0 36px; }
+
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.feature { position: relative; display: grid; gap: 10px; height: 100%; }
+.feature-icon { font-size: 1.6rem; }
+.feature-go { position: absolute; right: 22px; top: 22px; color: var(--muted); transition: transform 0.3s var(--ease), color 0.3s; }
+.feature:hover .feature-go { transform: translateX(4px); color: var(--accent); }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.step { display: grid; gap: 10px; padding-top: 20px; border-top: 1px solid var(--line-2); }
+.step-n { color: var(--accent); font-size: 0.85rem; }
+
+.cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  padding: 48px; border-radius: 24px; border: 1px solid var(--line-2);
+  background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 8%, var(--surface)));
+}
+
+@media (max-width: 760px) {
+  .hero { padding-top: 130px; }
+  .steps { grid-template-columns: 1fr; }
+  .hero-stats { gap: 28px; }
+  .cta { padding: 28px; }
+}

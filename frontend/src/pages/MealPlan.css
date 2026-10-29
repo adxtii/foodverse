@@ -1,0 +1,21 @@
+.plan-form { max-width: 720px; }
+.plan-results { margin-top: 36px; }
+.plan-num { font-size: 1.9rem; letter-spacing: -0.03em; }
+.plan-num small { font-size: 0.9rem; color: var(--muted); font-weight: 400; }
+.plan-target { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+
+.plan-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.plan-tabs button {
+  background: transparent; color: var(--muted); cursor: pointer;
+  border: 1px solid var(--line-2); border-radius: 999px; padding: 8px 18px; font: 500 0.88rem var(--sans);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.plan-tabs button:hover { color: var(--text); }
+.plan-tabs button.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+.plan-meal { display: grid; grid-template-columns: 90px 1fr auto; gap: 16px; align-items: center; animation: fadeUp 0.5s var(--ease) both; }
+.plan-meal-nums { display: grid; gap: 2px; text-align: right; }
+@media (max-width: 760px) {
+  .plan-meal { grid-template-columns: 1fr; gap: 8px; }
+  .plan-meal-nums { text-align: left; display: flex; gap: 14px; }
+}

@@ -1,0 +1,36 @@
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; }
+.nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); animation: pulse 2.6s ease-in-out infinite; }
+
+.nav-links { display: flex; gap: 4px; }
+.nav-links a { padding: 6px 12px; border-radius: 999px; font-size: 0.88rem; color: var(--muted); transition: color 0.2s, background 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent-ink); background: var(--accent); }
+
+.nav-burger { display: none; background: none; border: 0; width: 36px; height: 36px; cursor: pointer; position: relative; }
+.nav-burger span { position: absolute; left: 8px; right: 8px; height: 2px; background: var(--text); transition: transform 0.3s var(--ease); }
+.nav-burger span:first-child { top: 14px; }
+.nav-burger span:last-child { top: 21px; }
+.nav-burger[aria-expanded='true'] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav-burger[aria-expanded='true'] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+@media (max-width: 980px) {
+  .nav-cta { display: none; }
+  .nav-burger { display: block; }
+  .nav-links {
+    position: absolute; top: 64px; left: 0; right: 0;
+    flex-direction: column; gap: 0; padding: 8px 20px 20px;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+    transform: translateY(-8px); opacity: 0; pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s var(--ease);
+  }
+  .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
+  .nav-links a { padding: 12px 4px; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+  .nav-links a.active { background: none; color: var(--accent); }
+}
