@@ -1,4 +1,7 @@
-// Low-level helpers. Every request goes to /api (Vite proxies it to FastAPI).
+// Low-level helpers.
+// Locally, requests go to /api and Vite forwards them to FastAPI.
+// On the live site, set VITE_API_URL (e.g. https://foodverse-api.onrender.com) so they go to your backend.
+const BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
 
 async function handle(responsePromise) {
   let res
@@ -22,15 +25,15 @@ async function handle(responsePromise) {
   return res.json()
 }
 
-export const postForm = (path, form) => handle(fetch(`/api${path}`, { method: 'POST', body: form }))
+export const postForm = (path, form) => handle(fetch(`${BASE}/api${path}`, { method: 'POST', body: form }))
 
 export const postJson = (path, body) =>
   handle(
-    fetch(`/api${path}`, {
+    fetch(`${BASE}/api${path}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     })
   )
 
-export const getJson = (path) => handle(fetch(`/api${path}`))
+export const getJson = (path) => handle(fetch(`${BASE}/api${path}`))

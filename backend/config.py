@@ -15,4 +15,10 @@ MAX_VIDEO_FRAMES = 6      # frames sampled from one video
 MAX_IMAGES_PER_REQUEST = 8
 MAX_IMAGE_SIDE = 1280     # pixels; bigger images are shrunk before analysis
 
-ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
+# Websites allowed to call this API. Add your live site in the FRONTEND_ORIGINS setting
+# (comma separated), e.g. https://foodverse.vercel.app  (no slash at the end).
+ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"] + [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("FRONTEND_ORIGINS", "").split(",")
+    if origin.strip()
+]
